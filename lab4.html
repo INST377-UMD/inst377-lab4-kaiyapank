@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <title>INST377-Lab 4</title>
+        <link rel="stylesheet" href="lab4.css">
+    </head>
+    <body>
+
+        <!--Header-->
+        <header id="bar">
+            <h1 class="header" id = "header-words">INST377 - Lab 4</h1>
+        </header>
+
+        <!--Main Text Area-->
+        <div class="main-section">
+            <div class="content">
+                <!-- Name Form -->
+                <div class="box" id="name">
+                    <form name="contactForm" onsubmit="return formValidation();">
+                        <div class="name-form">
+                            <label for="name">Name:</label>
+                            <input type="text" name="firstName" id="form-name">
+                            <button type="submit">Alert Me!</button> 
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Change Color Box -->
+                <div class="box" id="change-color">
+                    <button onclick="changeColor()">Change Color!</button>
+                </div>
+
+                <!-- Text Tester Form -->
+                <div class="box" id="textval">
+                    <form name = "tester" onsubmit="return textValidation();">
+                        <div class="textform">
+                            <label for="textval">Validate Text:</label>
+                            <input type="text" name="word" id="text-tester">
+                            <button type = "submit">Validate Text</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Add Text Box -->
+                <div class="box" id="add-text">
+                    <button onclick="addText()">Add Text</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- JS Funtions -->
+        <script type="text/javascript">
+            
+            //Name Validation
+            function formValidation() {
+                if (document.contactForm.firstName.value === "") {
+                    alert('Enter Name!!!');
+                    return false;
+                }
+                alert('Hi ' + document.contactForm.firstName.value + '!');
+                return true;
+            }
+
+            //Change Color JS
+             function changeColor() {
+                if (document.body.style.backgroundColor == "lightcyan") {
+                    document.body.style.backgroundColor = "green";
+                } else {
+                    document.body.style.backgroundColor = "lightcyan";
+                }
+             }
+
+             //Text Tester JS
+             function textValidation(){
+                var validationRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+                if (document.tester["text-tester"].value === ""){
+                    alert("Enter a word");
+                    return false;
+                }
+                if(validationRegex.test(document.tester["text-tester"].value)) {
+                    alert("Error: No Special Characters Allowed");
+                    return false;
+                }
+                return true;
+             }
+
+             //Add Text JS
+             function addText() {
+                var headerName = document.querySelector('#header-words');
+                //Add the text
+                if (!headerName.textContent.endsWith(" - Adding Text")) {
+                    headerName.textContent += " - Adding Text";
+                }               
+             }
+        </script>
+    </body>
+</html>
